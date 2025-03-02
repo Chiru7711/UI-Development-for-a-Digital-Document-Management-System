@@ -11,8 +11,8 @@ const RecentActivity: React.FC = () => {
     (a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime()
   ).slice(0, 5);
   
-  const getActivityType = (doc: Document): { type: string; icon:JSX.Element; color: string } => {
-    if (doc.signed && doc.lastModified.getTime() === doc.uploadDate.getTime()) {
+  const getActivityType = (doc: Document): { type: string; icon: React.ReactElement; color: string } => {
+    if (doc.signed && new Date(doc.lastModified).getTime() === new Date(doc.uploadDate).getTime()) {
       return {
         type: 'Uploaded',
         icon: <Upload className="h-5 w-5" />,

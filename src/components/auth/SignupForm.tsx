@@ -45,7 +45,7 @@ const SignupForm: React.FC = () => {
     if (!validate()) return;
     
     try {
-      await signup(name, email, password);
+      await signup(name, email);
       navigate('/dashboard');
     } catch (err) {
       // Error is handled in the AuthContext

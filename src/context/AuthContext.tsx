@@ -5,8 +5,8 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (name: string, email: string, password: string) => Promise<void>;
+  login: (email: string) => Promise<void>; // Removed password
+  signup: (name: string, email: string) => Promise<void>; // Removed password
   logout: () => void;
   error: string | null;
 }
@@ -66,7 +66,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string) => { // Removed password parameter
     setIsLoading(true);
     setError(null);
     
@@ -74,7 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // For demo purposes, accept any email/password combination
+      // For demo purposes, accept any email
       const foundUser = users.find(u => u.email === email);
       
       if (foundUser) {
@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signup = async (name: string, email: string, password: string) => {
+  const signup = async (name: string, email: string) => { // Removed password parameter
     setIsLoading(true);
     setError(null);
     
